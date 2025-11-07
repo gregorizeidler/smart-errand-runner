@@ -1007,7 +1007,7 @@ flowchart LR
     B -->|"❌ Miss (35%)"| D["☁️ Call External API<br/>~500ms"]
     D --> E["🔄 Process Response"]
     E --> F["💾 Store in Cache"]
-    F --> G["⏰ Set TTL"}
+    F --> G["⏰ Set TTL"]
     G -->|"📍 Places: 1h"| H["📊 Return Data"]
     G -->|"🗺️ Routes: 5min"| H
     C --> H
