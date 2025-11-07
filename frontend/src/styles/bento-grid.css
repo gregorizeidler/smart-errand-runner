@@ -1,0 +1,193 @@
+/* 
+  DESIGN UPGRADE #8: Bento Grid Layout
+  Layout moderno tipo iOS/macOS com blocos assimétricos
+*/
+
+.bento-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: minmax(120px, auto);
+  gap: 1.5rem;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Tamanhos de blocos */
+.bento-item {
+  border-radius: 24px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.bento-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Layouts específicos */
+.bento-large {
+  grid-column: span 8;
+  grid-row: span 4;
+}
+
+.bento-medium {
+  grid-column: span 4;
+  grid-row: span 2;
+}
+
+.bento-small {
+  grid-column: span 4;
+  grid-row: span 2;
+}
+
+.bento-tall {
+  grid-column: span 4;
+  grid-row: span 4;
+}
+
+.bento-wide {
+  grid-column: span 8;
+  grid-row: span 2;
+}
+
+/* Layout específico para o app */
+.bento-map {
+  grid-column: span 8;
+  grid-row: span 6;
+  background: var(--white);
+}
+
+.bento-stats {
+  grid-column: span 4;
+  grid-row: span 2;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.bento-timeline {
+  grid-column: span 4;
+  grid-row: span 4;
+  background: var(--white);
+  overflow-y: auto;
+}
+
+.bento-cost {
+  grid-column: span 4;
+  grid-row: span 2;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+}
+
+.bento-suggestions {
+  grid-column: span 8;
+  grid-row: span 2;
+  background: var(--white);
+}
+
+.bento-controls {
+  grid-column: span 4;
+  grid-row: span 2;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .bento-container {
+    grid-template-columns: repeat(8, 1fr);
+  }
+  
+  .bento-large,
+  .bento-map,
+  .bento-wide,
+  .bento-suggestions {
+    grid-column: span 8;
+  }
+  
+  .bento-medium,
+  .bento-small,
+  .bento-tall,
+  .bento-stats,
+  .bento-timeline,
+  .bento-cost,
+  .bento-controls {
+    grid-column: span 4;
+  }
+}
+
+@media (max-width: 768px) {
+  .bento-container {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .bento-item {
+    grid-column: span 4 !important;
+    grid-row: span 2 !important;
+  }
+}
+
+/* Efeitos especiais para bento items */
+.bento-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.bento-item:hover::before {
+  opacity: 1;
+}
+
+/* Content styling */
+.bento-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.bento-header h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.bento-body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bento-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode */
+[data-theme="dark"] .bento-map,
+[data-theme="dark"] .bento-timeline,
+[data-theme="dark"] .bento-suggestions {
+  background: var(--dark-card);
+}
+
+[data-theme="dark"] .bento-footer {
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+

@@ -1,0 +1,114 @@
+.loading-steps {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px var(--shadow);
+  margin-bottom: 2rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.loading-step {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  opacity: 0.4;
+  position: relative;
+}
+
+.loading-step.active {
+  opacity: 1;
+  background: var(--bg);
+  transform: scale(1.02);
+}
+
+.loading-step.completed {
+  opacity: 0.7;
+}
+
+.step-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--white);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.loading-step.active .step-icon {
+  animation: pulse 1.5s ease-in-out infinite;
+  box-shadow: 0 0 0 0 rgba(33, 150, 243, 0.4);
+}
+
+.loading-step.completed .step-icon {
+  background: var(--success);
+}
+
+.check-overlay {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  background: var(--white);
+  border-radius: 50%;
+  color: var(--success);
+}
+
+.step-text {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.step-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  border-radius: 0 0 8px 8px;
+  animation: progressBar 2s ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(33, 150, 243, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(33, 150, 243, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(33, 150, 243, 0);
+  }
+}
+
+@keyframes progressBar {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Dark mode */
+[data-theme="dark"] .loading-steps {
+  background: var(--dark-card);
+}
+
+[data-theme="dark"] .loading-step.active {
+  background: var(--dark-bg);
+}
+
+[data-theme="dark"] .step-text {
+  color: var(--dark-text);
+}
+
